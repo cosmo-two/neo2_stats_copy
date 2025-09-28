@@ -9,33 +9,36 @@ cookies_dict = {
     session: null,
     uid: undefined
 }
-fetch('https://neo2stats.f5.si/github-login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ input_username, input_password })
-})
-    .then(response => {
+(async () => {
+    try {
+        const response = await fetch('https://neo2stats.f5.si/github-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input_username, input_password })
+        });
         if (!response.ok) throw new Error('ログイン失敗');
-        return response.json();
-    })
-    .then(data => {
-        print("ログインに成功")
-        cookies_dict.pid = data.pid
-        cookies_dict.uid = data.uid
 
-        // cookieをセット
-        authToken = {
-            "username": data.username,
-            "session": data.session,
-            "uid": data.uid,
-            "pid": data.pid
-        }
-    })
-    .catch(error => {
-        location.reload()
-    });
+        const data = await response.json();
+        console.log("ログインに成功");
+
+        cookies_dict.pid = data.pid;
+        cookies_dict.uid = data.uid;
+
+        const authToken = {
+            username: data.username,
+            session: data.session,
+            uid: data.uid,
+            pid: data.pid
+        };
+
+        const socket = io(connect_url, { auth: { username: input_username, password: input_password } });
+        socket.emit('chat_join', { token: authToken });
+
+    } catch (error) {
+        console.error(error);
+        location.reload();
+    }
+})();
 
 
 // const connect_url = "http://localhost:5000"
