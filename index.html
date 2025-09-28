@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Neo2-Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="icon" href="./static/img/favicon.ico" id="page-icon">
+    <link rel="stylesheet" href="./static/css/chat.css">
+</head>
+
+<body>
+    <audio id="messageSound" src="./static/sound/pop.wav" preload="auto"></audio>
+    <audio id="mentionSound" src="./static/sound/mention.wav" preload="auto"></audio>
+    <header>
+        <div class="header-contents">
+            <div class="header-left">
+                <a href="/">
+                    <div class="logo">
+                        <img src="./static/img/logo.svg" alt="logo" class="logo-image">
+                        <span class="logo-text font-audiowide">NEO2 STATS - CHAT</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="header-right">
+                <a href="/messages" target="_blank" class="LOGINED header-link">
+                    <img src="./static/img/message.svg" class="message">
+                </a>
+
+                <div class="dropdown LOGINED">
+                    <div onclick="toggleDropdown()" class="user-info dropdown-top dropdown-close">
+                        <h1 class="js-username"></h1>
+                        <img class="js-icon">
+                    </div>
+                    <a href="/profile" class="dropdown-content hidden">プロフィール</a>
+                    <a href="/account-setting" class="dropdown-content hidden">アカウント設定</a>
+                    <a onclick="logout()" class="dropdown-content dropdown-bottom hidden">ログアウト</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="main-container">
+        <div class="member-list sidebar">
+            <h2 class="">MEMBER</h2>
+            <div class="online-members">
+            </div>
+
+            <button class="games-button" onclick="toggle_games_list()">
+                <img src="./static/img/controller.svg">
+                <span>Games</span>
+            </button>
+        </div>
+
+        <div class="chat-container">
+            <div class="messages" id="messages">
+            </div>
+
+            <div class="bottom-menu">
+                <div class="under-menu">
+                    <img class="add_file" src="./static/img/add_file.svg">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <textarea id="messageInput" placeholder="メッセージを入力..." rows="1"></textarea>
+                    <button class="send-button" onclick="sendMessage()"><img src="./static/img/send.svg"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="voice-chat-container sidebar">
+            <h2>VOICE CHAT</h2>
+            <div class="vc-member"></div>
+            <button class="join-vc-button" onclick="confirm_open()">参加する</button>
+            <button class="leave-vc-button hidden" onclick="leave_vc()">退出する</button>
+            <div class="sidebar-buttons-container vc-menu hidden">
+                <button onclick="toggle_mic()"><img src="./static/img/mic_off.svg" class="mic-img"></button>
+                <button onclick="toggle_camera()"><img src="./static/img/camera_off.svg" class="camera-img"></button>
+                <button onclick="toggle_screen_share()"><img src="./static/img/screen_share_on.svg"
+                        class="screen-share-img" title="画面を共有する"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="vc-confirm">
+        <div class="panel vc-confirm-panel">
+            <h2>マイクとカメラを選択してください</h2>
+            <div class="buttons">
+                <button class="mic" onclick="toggle_mic_confirm()">
+                    <img src="./static/img/mic_off.svg" class="mic-img-confirm">
+                    <span class="off mic-status-text">マイク OFF</span>
+                </button>
+                <button class="camera" onclick="toggle_camera_confirm()">
+                    <img src="./static/img/camera_off.svg" class="camera-img-confirm">
+                    <span class="off camera-status-text">カメラ OFF</span>
+                </button>
+            </div>
+            <div class="join-or-cancel">
+                <button class="join" onclick="vc_join()">参加する</button>
+                <button class="cancel" onclick="confirm_close()">キャンセル</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="remote-media-area" class="hidden"></div>
+
+    <div class="upload-confirm">
+        <div class="upload-confirm-panel">
+            <h2>この画像をアップロードしますか</h2>
+            <img>
+            <div class="upload-or-cancel">
+                <button class="upload" onclick="upload_img()">アップロード</button>
+                <button class="cancel" onclick="upload_confirm_close()">キャンセル</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="games-list">
+        <div class="games-list-panel">
+            <div class="games">
+                <button class="neo2" onclick="create_virtual_window(423246183)">
+                    <img src="https://raw.githubusercontent.com/cosmo-zero/neo2-stats-images/refs/heads/main/neo2.png">
+                    <span>Online Tetris Neo2</span>
+                </button>
+                <button class="beta" onclick="create_virtual_window(1000009994)">
+                    <img src="https://raw.githubusercontent.com/cosmo-zero/neo2-stats-images/refs/heads/main/beta.png">
+                    <span>TETRIS Beta</span>
+                </button>
+                <button class="amongus" onclick="create_virtual_window(1214772816)">
+                    <img src="https://raw.githubusercontent.com/cosmo-zero/neo2-stats-images/refs/heads/main/among%20us.png">
+                    <span>AMONG US（通常）</span>
+                </button>
+                <button class="amongus2" onclick="create_virtual_window(1219865515)">
+                    <img src="https://raw.githubusercontent.com/cosmo-zero/neo2-stats-images/refs/heads/main/among%20us.png">
+                    <span>AMONG US（鬼ごっこ）</span>
+                </button>
+            </div>
+            <button class="close-button" onclick="toggle_games_list()">閉じる</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- 外部JSを読み込む-->
+    <script>
+        const userData = {"chat_log": {"log":[]}};
+    </script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+    <script src="./static/js/script.js"></script>
+    <script src="./static/js/chat.js"></script>
+    <script src="./static/js/vc.js"></script>
+    <script src="./static/js/virtual_window.js"></script>
+</body>
+
+</html>
