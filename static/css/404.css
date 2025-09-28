@@ -1,0 +1,18 @@
+.view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    color: white;
+    height: calc(90vh - 50px);
+}
+
+
+.view h2 {
+    font-size: 60px;
+}
+
+.view span {
+    font-size: 24px;
+}

@@ -1,0 +1,180 @@
+.view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0;
+}
+
+.view * {
+    box-sizing: border-box;
+}
+
+.ranking-base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    max-width: 800px;
+    min-width: 500px;
+    width: 100%;
+    
+    background-color: #2f3133;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.486);
+    box-sizing: border-box;
+
+    padding: 16px 0;
+}
+
+
+.ranking-base > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(210, 6%, 25%);
+    border-radius: 4px;
+    border: solid 1px hsl(210, 6%, 28%);
+
+    color: white;
+
+    width: calc(100% - 64px);
+    padding: 16px;
+
+    cursor: pointer;
+
+    transition: 0.1s ease;
+}
+
+.ranking-base > button:hover {
+    background-color: hsl(210, 6%, 28%);
+}
+
+
+
+.categories {
+    z-index: 100;
+}
+
+.categories button {
+    color: #c0c8d1;
+
+    background-color: transparent;
+    border: solid 1px transparent;
+    outline: none;
+
+    padding: 8px 24px;
+
+    cursor: pointer;
+
+    transition: 0.1s ease;
+}
+
+.categories button:hover {
+    color: white;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.384);
+}
+
+
+.categories .selected {
+    font-weight: bolder;
+    color: white;
+    border-bottom: solid 1px white !important;
+}
+
+.categories button:active {
+    color: white;
+    border-bottom: solid 1px white !important;
+}
+
+
+
+
+
+.separate-line {
+    display: block;
+
+    width: 90%;
+    height: 1px;
+
+    transform: translateY(-1px);
+    
+    background-color: #484b4e;
+}
+
+
+
+
+.ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    
+    padding: 32px;
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+.ranking a {
+    display: flex;
+    align-items: center;
+
+    background-color: #35383b;
+    border-radius: 4px;
+    
+    padding: 8px;
+    width: 100%;
+    
+    color: #ebf5ff;
+    text-decoration: none;
+
+    transition: 0.1s ease;
+}
+
+.ranking a:hover {
+    background-color: hsl(210, 5%, 25%);
+}
+
+.ranking a > span {
+    font-size: small;
+    margin: 0 48px 0 16px;
+    color: rgba(255, 255, 255, 0.712);
+    width: 10px;
+}
+
+
+.ranking a .icon_and_un {
+    display: flex;
+    gap: 16px;
+
+    align-items: center;
+}
+
+.ranking a .icon_and_un img {
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+}
+
+.ranking a .icon_and_un span {
+    font-weight: 500;
+}
+
+.ranking a .record {
+    margin-left: auto;
+    margin-right: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-family: "SF Mono", Menlo, Consolas, "MS Gothic", monospace;
+}
+
+.ranking a .record img {
+    height: 32px;
+    width: 32px;
+}
