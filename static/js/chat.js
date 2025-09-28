@@ -12,6 +12,23 @@ cookies_dict = {
 }
 
 let authToken
+let my_icon_url
+const messageSound = document.getElementById('messageSound');
+const mentionSound = document.getElementById('mentionSound');
+const onlineMembersDiv = document.querySelector('.online-members');
+const upload_confirm = document.querySelector('.upload-confirm');
+const upload_confirm_panel = document.querySelector('.upload-confirm-panel');
+const imagePreview = document.querySelector(".upload-confirm-panel img");
+const page_icon = document.querySelector("head #page-icon");
+var last_chat_username = "";
+var reaction_dict = {};
+var reply_mode = false;
+var reply_message_id = ""
+let chat_icon_showed_unix = 0
+// ログ表示
+var chat_log = {}
+
+
 
 async function loginAndSetToken() {
     try {
@@ -39,7 +56,7 @@ async function loginAndSetToken() {
 
 
         const suid = authToken["uid"]
-        const my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
+        my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
 
 
         // const connect_url = "http://localhost:5000"
@@ -54,22 +71,6 @@ async function loginAndSetToken() {
 
 
 
-
-        const messageSound = document.getElementById('messageSound');
-        const mentionSound = document.getElementById('mentionSound');
-        const onlineMembersDiv = document.querySelector('.online-members');
-        const upload_confirm = document.querySelector('.upload-confirm');
-        const upload_confirm_panel = document.querySelector('.upload-confirm-panel');
-        const imagePreview = document.querySelector(".upload-confirm-panel img");
-        const page_icon = document.querySelector("head #page-icon");
-
-        var last_chat_username = "";
-        var reaction_dict = {};
-        var reply_mode = false;
-        var reply_message_id = ""
-        let chat_icon_showed_unix = 0
-        // ログ表示
-        var chat_log = {}
 
 
         // ログをセットした後に下にスクロール
@@ -158,7 +159,7 @@ async function loginAndSetToken() {
 
 
 
-        
+
         // テキストエリア自動調整
         textarea.addEventListener("input", () => {
             textarea.style.height = "auto"; // 一旦リセット
