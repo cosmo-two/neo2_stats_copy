@@ -46,7 +46,7 @@ const socket = io(connect_url, {
 });
 
 
-
+const authToken = credentials
 
 
 const messageSound = document.getElementById('messageSound');
