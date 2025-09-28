@@ -280,7 +280,7 @@ function showContextMenu(x, y, messageId) {
             delete_button = `
         <button class="delete-button" onclick="delete_pressed('${messageId}')">
             <span>削除する</span>
-            <img src="/static/img/delete_message.svg">
+            <img src="./static/img/delete_message.svg">
         </button>`
         } else {
             delete_button = ``
@@ -288,7 +288,7 @@ function showContextMenu(x, y, messageId) {
         contextMenu.innerHTML = `
         <button class="reply_button" onclick="reply_pressed('${messageId}')">
             <span>返信する</span>
-            <img src="/static/img/reply_message.svg">
+            <img src="./static/img/reply_message.svg">
         </button>
         ${delete_button}
         <ul class="reaction-table">
@@ -603,7 +603,7 @@ function show_message(message_dict, log_load = false) {
 
                     print(document.hidden)
                     if (document.hidden) {
-                        page_icon.href = "/static/img/favicon_notification.ico"
+                        page_icon.href = "./static/img/favicon_notification.ico"
                     }
                 }
             } else {
@@ -1065,7 +1065,7 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
         if (page_icon.href.includes("notification")) {
-            page_icon.href = "/static/img/favicon.ico"
+            page_icon.href = "./static/img/favicon.ico"
         }
     }
 });
