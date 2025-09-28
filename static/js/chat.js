@@ -73,6 +73,7 @@ async function loginAndSetToken() {
 
         vc_state["icon_url"] = my_icon_url
         vc_state["suid"] = authToken.uid
+        vc_state["username"] = authToken.username
 
 
 
