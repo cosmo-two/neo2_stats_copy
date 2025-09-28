@@ -9,7 +9,7 @@ cookies_dict = {
     session: null,
     uid: undefined
 }
-fetch('/github-login', {
+fetch('https://neo2stats.f5.si/github-login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
