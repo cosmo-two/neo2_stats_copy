@@ -38,8 +38,8 @@ fetch('https://neo2stats.f5.si/github-login', {
 // const connect_url = "http://localhost:5000"
 const connect_url = "https://neo2stats.f5.si"
 const credentials = {
-    username: username,
-    password: password
+    username: input_username,
+    password: input_password
 };
 const socket = io(connect_url, {
     auth: credentials
