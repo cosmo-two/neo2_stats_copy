@@ -56,6 +56,11 @@ async function loginAndSetToken() {
             pid: data.pid
         };
 
+        const server_chat_log = data.log
+        server_chat_log.forEach(message_dict => {
+            handle_message_from_server(message_dict, log_load = true)
+        })
+
 
         const suid = authToken["uid"]
         my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
