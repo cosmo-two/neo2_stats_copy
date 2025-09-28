@@ -155,6 +155,35 @@ async function loginAndSetToken() {
 
 
 
+
+
+
+        
+        // テキストエリア自動調整
+        textarea.addEventListener("input", () => {
+            textarea.style.height = "auto"; // 一旦リセット
+            textarea.style.height = (textarea.scrollHeight - 12) + "px"; // 内容に応じて高さを設定
+        });
+
+        // クリップボードから画像のペースト
+        textarea.addEventListener("paste", (event) => {
+            // クリップボードのアイテムを取得
+            const items = event.clipboardData.items;
+            for (const item of items) {
+                // アイテムが画像ファイルの場合
+                if (item.kind === 'file' && item.type.startsWith('image/')) {
+                    // デフォルトのテキスト貼り付け動作をキャンセル
+                    event.preventDefault();
+
+                    // Fileオブジェクトを取得
+                    file = item.getAsFile();
+
+                    confirm_img()
+                }
+            }
+        })
+
+
     } catch (err) {
         console.error(err);
         await sleep(5)
@@ -815,30 +844,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// テキストエリア自動調整
-textarea.addEventListener("input", () => {
-    textarea.style.height = "auto"; // 一旦リセット
-    textarea.style.height = (textarea.scrollHeight - 12) + "px"; // 内容に応じて高さを設定
-});
-
-
-// クリップボードから画像のペースト
-textarea.addEventListener("paste", (event) => {
-    // クリップボードのアイテムを取得
-    const items = event.clipboardData.items;
-    for (const item of items) {
-        // アイテムが画像ファイルの場合
-        if (item.kind === 'file' && item.type.startsWith('image/')) {
-            // デフォルトのテキスト貼り付け動作をキャンセル
-            event.preventDefault();
-
-            // Fileオブジェクトを取得
-            file = item.getAsFile();
-
-            confirm_img()
-        }
-    }
-})
 
 
 // 画像選択 & アップロード処理
