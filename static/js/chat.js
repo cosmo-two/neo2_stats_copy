@@ -44,6 +44,8 @@ async function loginAndSetToken() {
 
 // ここを「fetch 完了後に進めたい処理」の前で呼ぶ
 await loginAndSetToken();
+const suid = authToken["uid"]
+const my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
 
 
 // const connect_url = "http://localhost:5000"
