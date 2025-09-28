@@ -61,7 +61,6 @@ async function loginAndSetToken() {
         my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
 
 
-        // const connect_url = "http://localhost:5000"
         const connect_url = "https://neo2stats.f5.si"
         const credentials = {
             username: input_username,
@@ -70,6 +69,10 @@ async function loginAndSetToken() {
         socket = io(connect_url, {
             auth: credentials
         });
+
+
+        vc_state["icon_url"] = my_icon_url
+        vc_state["suid"] = authToken.uid
 
 
 
@@ -194,7 +197,7 @@ async function loginAndSetToken() {
     }
 }
 
-// ここを「fetch 完了後に進めたい処理」の前で呼ぶ
+
 loginAndSetToken();
 
 function socket_send(data) {
