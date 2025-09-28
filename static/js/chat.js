@@ -25,6 +25,8 @@ async function loginAndSetToken() {
         const data = await response.json();
         console.log("ログインに成功");
 
+        print(data)
+
         cookies_dict.pid = data.pid;
         cookies_dict.uid = data.uid;
 
