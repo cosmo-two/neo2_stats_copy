@@ -1,11 +1,11 @@
-const username = window.prompt("ユーザー名を入力してください", "");
-const password = window.prompt("パスワードを入力してください", "");
+const input_username = window.prompt("ユーザー名を入力してください", "");
+const input_password = window.prompt("パスワードを入力してください", "");
 
 
 
 cookies_dict = {
     pid: undefined,
-    username: username,
+    username: input_username,
     session: null,
     uid: undefined
 }
@@ -14,7 +14,7 @@ fetch('/github-login', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ input_username, input_password })
 })
     .then(response => {
         if (!response.ok) throw new Error('ログイン失敗');
