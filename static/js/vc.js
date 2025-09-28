@@ -91,7 +91,7 @@ async function mic_set(mic_state) {
 
             console.log("マイクへのアクセスに成功しました。");
             mic_confirm = true;
-            src = "/static/img/mic_on.svg";
+            src = "./static/img/mic_on.svg";
             mic_text.innerHTML = "マイク ON";
             mic_text.classList.remove("off");
 
@@ -100,7 +100,7 @@ async function mic_set(mic_state) {
             alert("マイクへのアクセスが拒否されたか、デバイスが見つかりませんでした。");
             // 失敗した場合のUI更新
             mic_confirm = false;
-            src = "/static/img/mic_off.svg";
+            src = "./static/img/mic_off.svg";
             mic_text.innerHTML = "マイク OFF";
             mic_text.classList.add("off");
         }
@@ -113,7 +113,7 @@ async function mic_set(mic_state) {
             console.log("マイクへのアクセスを停止しました。");
         }
 
-        src = "/static/img/mic_off.svg";
+        src = "./static/img/mic_off.svg";
         mic_text.innerHTML = "マイク OFF";
         mic_text.classList.add("off");
         mic_confirm = false;
@@ -167,7 +167,7 @@ async function camera_set(camera_state) {
 
             console.log("カメラへのアクセスに成功しました。");
             camera_confirm = true;
-            src = "/static/img/camera_on.svg";
+            src = "./static/img/camera_on.svg";
             camera_text.innerHTML = "カメラ ON";
             camera_text.classList.remove("off");
 
@@ -176,7 +176,7 @@ async function camera_set(camera_state) {
             alert("カメラへのアクセスが拒否されたか、デバイスが見つかりませんでした。");
             // 失敗した場合のUI更新
             camera_confirm = false;
-            src = "/static/img/camera_off.svg";
+            src = "./static/img/camera_off.svg";
             camera_text.innerHTML = "カメラ OFF";
             camera_text.classList.add("off");
         }
@@ -189,7 +189,7 @@ async function camera_set(camera_state) {
             console.log("カメラへのアクセスを停止しました。");
         }
 
-        src = "/static/img/camera_off.svg";
+        src = "./static/img/camera_off.svg";
         camera_text.innerHTML = "カメラ OFF";
         camera_text.classList.add("off");
         camera_confirm = false;
@@ -335,7 +335,7 @@ async function vc_join() {
     screen_share = false
     mic_img.src = `/static/img/mic_${["off", "on"][Number(mic)]}.svg`
     camera_img.src = `/static/img/camera_${["off", "on"][Number(camera)]}.svg`
-    screen_share_img.src = "/static/img/screen_share_on.svg"
+    screen_share_img.src = "./static/img/screen_share_on.svg"
     confirm_close()
 
     // 部屋と名前設定
