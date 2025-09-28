@@ -591,21 +591,6 @@ function remove_vc(username) {
 
 
 
-// 生存確認処理
-function ping() {
-    vc_state["vc_join"] = vc_joined
-    vc_state["mic"] = mic
-    vc_state["camera"] = camera
-    vc_state["screen_share"] = screen_share
-    socket.emit('ping_from_client', vc_state);
-}
-
-ping()
-setInterval(() => {
-    ping()
-}, 5000); // 5秒ごとにPing
-
-
 
 // メンバーリスト更新処理
 socket.on('updata_member', (data) => {
