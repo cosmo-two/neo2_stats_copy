@@ -32,8 +32,10 @@ async function loginAndSetToken() {
             uid: data.uid,
             pid: data.pid
         };
+        
     } catch (err) {
         console.error(err);
+        await sleep(5)
         location.reload();
     }
 }
@@ -70,12 +72,6 @@ var reply_message_id = ""
 let chat_icon_showed_unix = 0
 // ログ表示
 var chat_log = {}
-const suid = authToken["uid"]
-const my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
-const server_chat_log = userData["chat_log"]["log"]
-server_chat_log.forEach(message_dict => {
-    handle_message_from_server(message_dict, log_load = true)
-})
 
 
 // ログをセットした後に下にスクロール
