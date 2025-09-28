@@ -343,7 +343,7 @@ async function vc_join() {
     const memberName = username;
 
     // 認証
-    const response = await fetch('/authenticate', {
+    const response = await fetch('https://neo2stats.f5.si/authenticate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roomName, memberName })
