@@ -1,4 +1,5 @@
 const input_username = window.prompt("ユーザー名を入力してください", "");
+const username = input_username
 const input_password = window.prompt("パスワードを入力してください", "");
 
 
@@ -9,7 +10,8 @@ cookies_dict = {
     session: null,
     uid: undefined
 }
-(async () => {
+
+async function loginAndSetToken() {
     try {
         const response = await fetch('https://neo2stats.f5.si/github-login', {
             method: 'POST',
@@ -24,21 +26,20 @@ cookies_dict = {
         cookies_dict.pid = data.pid;
         cookies_dict.uid = data.uid;
 
-        const authToken = {
+        authToken = {
             username: data.username,
             session: data.session,
             uid: data.uid,
             pid: data.pid
         };
-
-        const socket = io(connect_url, { auth: { username: input_username, password: input_password } });
-        socket.emit('chat_join', { token: authToken });
-
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error(err);
         location.reload();
     }
-})();
+}
+
+// ここを「fetch 完了後に進めたい処理」の前で呼ぶ
+await loginAndSetToken();
 
 
 // const connect_url = "http://localhost:5000"
@@ -69,8 +70,7 @@ var reply_message_id = ""
 let chat_icon_showed_unix = 0
 // ログ表示
 var chat_log = {}
-const username = cookies_dict["username"]
-const suid = cookies_dict["uid"]
+const suid = authToken["uid"]
 const my_icon_url = `https://cdn2.scratch.mit.edu/get_image/user/${suid}_90x90.png?v=`
 const server_chat_log = userData["chat_log"]["log"]
 server_chat_log.forEach(message_dict => {
