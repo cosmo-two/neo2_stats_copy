@@ -11,6 +11,8 @@ cookies_dict = {
     uid: undefined
 }
 
+let authToken
+
 async function loginAndSetToken() {
     try {
         const response = await fetch('https://neo2stats.f5.si/github-login', {
