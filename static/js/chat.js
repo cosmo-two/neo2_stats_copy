@@ -31,6 +31,19 @@ var chat_log = {}
 let socket
 
 
+// リアクションのセット
+const reactions = ["👍", "⭕", "❌", "⁉️", "❗", "❓", "🚫", "⛔", "💯", "💢", "⚠️", "✅", "❤️", "💔", "💤", "👌", "✋", "🔥", "💦", "🌱", "👀", "🎉", "😆", "🥲", "😭", "😡", "🤔", "😇", "🤯", "😩", "😅", "🤮", "🥰", "😍", "😨", "🥹", "🥶", "🥵", "🫠", "😎"]
+let reaction_list_html = ""
+for (let i = 0; i < reactions.length; i += 5) {
+    const bag = reactions.slice(i, i + 5)
+    reaction_list_html += `<ul class="reaction-list">`
+    bag.forEach(element => {
+        reaction_list_html += `<li onclick="addReaction('messageId', '${element}')">${element}</li>`
+    });
+    reaction_list_html += `</ul>`
+}
+
+
 
 async function loginAndSetToken() {
     try {
@@ -90,17 +103,7 @@ async function loginAndSetToken() {
         // テキスト入力欄自動拡張用
         const textarea = document.getElementById("messageInput");
 
-        // リアクションのセット
-        const reactions = ["👍", "⭕", "❌", "⁉️", "❗", "❓", "🚫", "⛔", "💯", "💢", "⚠️", "✅", "❤️", "💔", "💤", "👌", "✋", "🔥", "💦", "🌱", "👀", "🎉", "😆", "🥲", "😭", "😡", "🤔", "😇", "🤯", "😩", "😅", "🤮", "🥰", "😍", "😨", "🥹", "🥶", "🥵", "🫠", "😎"]
-        let reaction_list_html = ""
-        for (let i = 0; i < reactions.length; i += 5) {
-            const bag = reactions.slice(i, i + 5)
-            reaction_list_html += `<ul class="reaction-list">`
-            bag.forEach(element => {
-                reaction_list_html += `<li onclick="addReaction('messageId', '${element}')">${element}</li>`
-            });
-            reaction_list_html += `</ul>`
-        }
+
 
 
         // 入室を通知
