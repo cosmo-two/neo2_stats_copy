@@ -1,4 +1,4 @@
-const useranme = window.prompt("ユーザー名を入力してください", "");
+const username = window.prompt("ユーザー名を入力してください", "");
 const password = window.prompt("パスワードを入力してください", "");
 
 
