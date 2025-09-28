@@ -33,7 +33,6 @@ let audioPublication = null;
 
 let vc_state = {
     "vc_join": false,
-    "icon_url": my_icon_url,
     "suid": suid,
     "mic": false,
     "camera": false,
