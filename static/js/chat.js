@@ -28,6 +28,8 @@ let chat_icon_showed_unix = 0
 // ログ表示
 var chat_log = {}
 
+let socket
+
 
 
 async function loginAndSetToken() {
@@ -65,7 +67,7 @@ async function loginAndSetToken() {
             username: input_username,
             password: input_password
         };
-        const socket = io(connect_url, {
+        socket = io(connect_url, {
             auth: credentials
         });
 
