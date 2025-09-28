@@ -592,38 +592,6 @@ function remove_vc(username) {
 
 
 
-// メンバーリスト更新処理
-socket.on('updata_member', (data) => {
-    onlineMembersDiv.innerHTML = "";
-    vc_member.innerHTML = ""
-
-    data.forEach(user => {
-        const memberDiv = document.createElement('a');
-        memberDiv.href = `/profile/${user["username"]}`
-        memberDiv.target = "_blank"
-
-        memberDiv.innerHTML = `
-            <div class="online-member">
-                <img src="${user["icon_url"]}">
-                <span>${user["username"]}</span>
-            </div>
-        `
-        onlineMembersDiv.appendChild(memberDiv);
-
-
-        if (user["vc_join"]) {
-            add_vc(user)
-        }
-
-
-    });
-    document.title = `${data.length} | Neo2 Stats - チャット`;
-
-});
-
-
-
-
 
 
 
