@@ -1042,3 +1042,28 @@ socket.on('connected', () => {
     show_message({ type: "connection_change", text: `サーバーに接続しました（${reason}）` })
     socket.emit('chat_join');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// 生存確認処理
+function ping() {
+    vc_state["vc_join"] = false
+    vc_state["mic"] = false
+    vc_state["camera"] = false
+    vc_state["screen_share"] = false
+    socket.emit('ping_from_client', vc_state);
+}
+
+ping()
+setInterval(() => {
+    ping()
+}, 5000); // 5秒ごとにPing
