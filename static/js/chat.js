@@ -21,6 +21,7 @@ fetch('https://neo2stats.f5.si/github-login', {
         return response.json();
     })
     .then(data => {
+        print("ログインに成功")
         cookies_dict.pid = data.pid
         cookies_dict.uid = data.uid
 
