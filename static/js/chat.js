@@ -26,32 +26,16 @@ fetch('https://neo2stats.f5.si/github-login', {
         cookies_dict.uid = data.uid
 
         // cookieをセット
-        setCookie("username", data.username, 30)
-        setCookie("session", data.session, 30)
-        setCookie("uid", data.uid, 30)
-        setCookie("pid", data.pid, 30)
+        authToken = {
+            "username": data.username,
+            "session": data.session,
+            "uid": data.uid,
+            "pid": data.pid
+        }
     })
     .catch(error => {
         location.reload()
     });
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        // 現在時刻に有効日数（ミリ秒単位）を加算
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    // secure属性を付けるとHTTPS接続でのみCookieが送信される
-    document.cookie = name + "=" + (value || "") + expires + "; path=/; secure";
-}
-
-// 'username'という名前のCookieに'Taro'という値を7日間設定
-setCookie("username", "Taro", 7);
-///////////////////////////////////////////////////////////////////////////////////////
 
 
 // const connect_url = "http://localhost:5000"
@@ -65,7 +49,6 @@ const socket = io(connect_url, {
 });
 
 
-const authToken = credentials
 
 
 const messageSound = document.getElementById('messageSound');
